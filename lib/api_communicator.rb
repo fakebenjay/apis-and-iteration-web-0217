@@ -10,7 +10,7 @@ def get_character_movies_from_api(character)
 
   character_hash["results"].each do |person|
     person.each do |attribute, info|
-      if person[attribute] == character
+      if person["name"].downcase == character.downcase
         films_array = person["films"]
       end
     end
