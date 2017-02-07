@@ -16,6 +16,7 @@ def get_character_movies_from_api(character)
     end
   end
   return films_array
+end
 
   # iterate over the character hash to find the collection of `films` for the given
   #   `character`
@@ -26,24 +27,28 @@ def get_character_movies_from_api(character)
   # this collection will be the argument given to `parse_character_movies`
   #  and that method will do some nice presentation stuff: puts out a list
   #  of movies by title. play around with puts out other info about a given film.
-end
 
 def parse_character_movies(films_hash)
-  films_array = []
+  # films_array = []
+  counter = 1
+  # Remove counter and puts statement below if you un-comment the rest of this
 
   films_hash.each do |url|
     movie_JSON = RestClient.get(url)
     movie_hash = JSON.parse(movie_JSON)
 
-    movie_hash.each do |attribute, info|
-      if attribute == "title"
-        films_array << info
-      end
-    end
+    puts "#{counter}. #{movie_hash["title"]}"
+    counter += 1
+
+  #  movie_hash.each do |attribute, info|
+  #    if attribute == "title"
+  #      films_array << info
+  #    end
+  #  end
   end
-  films_array.each_with_index do |title, i|
-    puts "#{i+1}. #{title}"
-  end
+  # films_array.each_with_index do |title, i|
+  #   puts "#{i+1}. #{title}"
+  # end
 end
 
 def show_character_movies(character)
